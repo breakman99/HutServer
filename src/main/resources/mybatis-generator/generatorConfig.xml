@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="my" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--jdbc的数据库连接-->
+        <!--这里是以变量的形式定义，具体的值在 application.properties 文件中-->
+        <!--jdbc:mysql://localhost:3306/数据库名?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://39.105.160.181:3306/hut-server?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false"
+                        userId="root"
+                        password="password">
+        </jdbcConnection>
+
+
+        <!-- targetPackage：生成的实体类所在的包 -->
+        <!-- targetProject：生成的实体类所在的硬盘位置 -->
+        <!-- DataObject 类存放位置 -->
+        <javaModelGenerator targetPackage="com.hut.weekcp.server.dao"
+                            targetProject="./src/main/java">
+            <!-- 是否允许子包 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 是否对modal添加构造函数 -->
+            <property name="constructorBased" value="true"/>
+            <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
+            <property name="trimStrings" value="true"/>
+            <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
+            <property name="immutable" value="false"/>
+        </javaModelGenerator>
+
+        <!-- targetPackage 和 targetProject：生成的 mapper 文件的包和位置 -->
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="./src/main/resources">
+            <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+
+        <!-- targetPackage 和 targetProject：生成的 interface 文件的包和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.hut.weekcp.server.mapper" targetProject="./src/main/java">
+            <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+<!--        <table tableName="weekcp_log_v3" domainObjectName="LogDO">-->
+
+<!--        </table>-->
+<!--        <table tableName="weekcp_wait_user" domainObjectName="WaitUserDO">-->
+<!--        </table>-->
+
+<!--        <table tableName="weekcp_own_course_v3" domainObjectName="OwnCourseDO">-->
+<!--        </table>-->
+
+<!--        <table tableName="weekcp_user_GPA_v3" domainObjectName="UserGPADO">-->
+<!--        </table>-->
+<!--        <table tableName="weekcp_cp_pool" domainObjectName="CpPoolDO">-->
+<!--        </table>-->
+        <table tableName="weekcp_admin_user" domainObjectName="AdminDO">
+        </table>
+
+    </context>
+</generatorConfiguration>
