@@ -11,24 +11,24 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * <p>
- * 
+ * 群组的成员表
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_group_member")
-@ApiModel(value = "HutGroupMemberEntity对象", description = "")
+@ApiModel(value = "HutGroupMemberEntity对象", description = "群组的成员表")
 public class HutGroupMemberEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty("群组id")
-    private Long groupId;
+    private String groupId;
 
     @ApiModelProperty("成员，用户的user_id")
-    private Long memberId;
+    private String memberUserId;
 
     @ApiModelProperty("群头衔、群称号、可由管理员赋予")
     private String tag;
@@ -55,20 +55,20 @@ public class HutGroupMemberEntity {
         this.id = id;
     }
 
-    public Long getGroupId() {
+    public String getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(Long groupId) {
+    public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
 
-    public Long getMemberId() {
-        return memberId;
+    public String getMemberUserId() {
+        return memberUserId;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setMemberUserId(String memberUserId) {
+        this.memberUserId = memberUserId;
     }
 
     public String getTag() {
@@ -124,7 +124,7 @@ public class HutGroupMemberEntity {
         return "HutGroupMemberEntity{" +
             "id = " + id +
             ", groupId = " + groupId +
-            ", memberId = " + memberId +
+            ", memberUserId = " + memberUserId +
             ", tag = " + tag +
             ", role = " + role +
             ", banned = " + banned +

@@ -11,18 +11,21 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * <p>
- * 
+ * 群组的信息表
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_chat_group_info")
-@ApiModel(value = "HutChatGroupInfoEntity对象", description = "")
+@ApiModel(value = "HutChatGroupInfoEntity对象", description = "群组的信息表")
 public class HutChatGroupInfoEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
+    @ApiModelProperty("群组id")
+    private String groupId;
 
     private String name;
 
@@ -44,6 +47,14 @@ public class HutChatGroupInfoEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public String getName() {
@@ -98,6 +109,7 @@ public class HutChatGroupInfoEntity {
     public String toString() {
         return "HutChatGroupInfoEntity{" +
             "id = " + id +
+            ", groupId = " + groupId +
             ", name = " + name +
             ", groupBio = " + groupBio +
             ", isDelete = " + isDelete +

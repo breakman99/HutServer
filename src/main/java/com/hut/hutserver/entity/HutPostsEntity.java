@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_posts")
 @ApiModel(value = "HutPostsEntity对象", description = "")
@@ -24,7 +24,7 @@ public class HutPostsEntity {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Long userId;
+    private String userId;
 
     private String title;
 
@@ -49,11 +49,11 @@ public class HutPostsEntity {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

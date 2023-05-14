@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_notifications")
 @ApiModel(value = "HutNotificationsEntity对象", description = "system notification table: 好友请求、系统公告、未读消息等")
@@ -24,9 +24,9 @@ public class HutNotificationsEntity {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Long senderId;
+    private String sendUserId;
 
-    private Long receiverId;
+    private String receiveUserId;
 
     private String content;
 
@@ -45,20 +45,20 @@ public class HutNotificationsEntity {
         this.id = id;
     }
 
-    public Long getSenderId() {
-        return senderId;
+    public String getSendUserId() {
+        return sendUserId;
     }
 
-    public void setSenderId(Long senderId) {
-        this.senderId = senderId;
+    public void setSendUserId(String sendUserId) {
+        this.sendUserId = sendUserId;
     }
 
-    public Long getReceiverId() {
-        return receiverId;
+    public String getReceiveUserId() {
+        return receiveUserId;
     }
 
-    public void setReceiverId(Long receiverId) {
-        this.receiverId = receiverId;
+    public void setReceiveUserId(String receiveUserId) {
+        this.receiveUserId = receiveUserId;
     }
 
     public String getContent() {
@@ -97,8 +97,8 @@ public class HutNotificationsEntity {
     public String toString() {
         return "HutNotificationsEntity{" +
             "id = " + id +
-            ", senderId = " + senderId +
-            ", receiverId = " + receiverId +
+            ", sendUserId = " + sendUserId +
+            ", receiveUserId = " + receiveUserId +
             ", content = " + content +
             ", type = " + type +
             ", createdAt = " + createdAt +

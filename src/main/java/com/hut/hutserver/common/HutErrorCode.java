@@ -2,12 +2,14 @@ package com.hut.hutserver.common;
 
 import java.beans.ConstructorProperties;
 
-public class HutServerErrorCode {
+public class HutErrorCode {
     private int code;
     private String message;
 
-    public static HutServerErrorCode BID_USER_NOT_FOUND = new HutServerErrorCode(40001, "未找到此bid用户");
-    public static HutServerErrorCode XH_OR_PASSWORD_ERROR = new HutServerErrorCode(40002, "学号或密码错误");
+    public static final HutErrorCode USER_ALREADY_EXISTED = new HutErrorCode(10001, "user already existed");
+    public static final HutErrorCode REGISTER_FAILED = new HutErrorCode(10002, "学号或密码错误");
+    public static final HutErrorCode USER_NOT_EXIST_OR_ERROR_PASSWORD = new HutErrorCode(10003, "账号或密码错误");
+    public static final HutErrorCode USER_NOT_EXIST = new HutErrorCode(10004, "用户不存在");
 
     public int getCode() {
         return this.code;
@@ -28,10 +30,10 @@ public class HutServerErrorCode {
     public boolean equals(Object o) {
         if (o == this) {
             return true;
-        } else if (!(o instanceof HutServerErrorCode)) {
+        } else if (!(o instanceof HutErrorCode)) {
             return false;
         } else {
-            HutServerErrorCode other = (HutServerErrorCode)o;
+            HutErrorCode other = (HutErrorCode)o;
             if (!other.canEqual(this)) {
                 return false;
             } else if (this.getCode() != other.getCode()) {
@@ -53,7 +55,7 @@ public class HutServerErrorCode {
     }
 
     protected boolean canEqual(Object other) {
-        return other instanceof HutServerErrorCode;
+        return other instanceof HutErrorCode;
     }
 
     public int hashCode() {
@@ -69,7 +71,7 @@ public class HutServerErrorCode {
     }
 
     @ConstructorProperties({"code", "message"})
-    public HutServerErrorCode(int code, String message) {
+    public HutErrorCode(int code, String message) {
         this.code = code;
         this.message = message;
     }

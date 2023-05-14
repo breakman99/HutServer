@@ -17,7 +17,7 @@ import java.util.Date;
 @Slf4j
 @Component
 @ConfigurationProperties(prefix = "app.jwt")
-public class JWTUtils {
+public class JWTManager {
     /**
      * 加密秘钥
      */
@@ -46,7 +46,7 @@ public class JWTUtils {
             Algorithm algorithmHS = Algorithm.HMAC512(secret);
             token = JWT.create()
                     .withSubject(username)
-                    .withIssuer("HutHelper")
+                    .withIssuer("Hut Service")
                     .withExpiresAt(expireDate)
                     .sign(algorithmHS);
         } catch (JWTCreationException e) {

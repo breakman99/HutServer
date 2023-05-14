@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * 群组的成员表 Mapper 接口
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 public interface HutGroupMemberMapper extends BaseMapper<HutGroupMemberEntity> {
 

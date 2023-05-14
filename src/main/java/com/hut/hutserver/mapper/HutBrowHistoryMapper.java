@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 public interface HutBrowHistoryMapper extends BaseMapper<HutBrowHistoryEntity> {
 

@@ -22,8 +22,8 @@ public class WebMVCConfig extends WebMvcConfigurationSupport {
         registry.addInterceptor(tokenInterceptor).addPathPatterns("/api/**")
                 .excludePathPatterns("/api/token/**")
                 .excludePathPatterns("/api/view/**")
-                .excludePathPatterns("/api/hut/**")
-                .excludePathPatterns("/api/v1/login/common_login")
+                .excludePathPatterns("/api/v1/user/register")
+                .excludePathPatterns("/api/v1/user/login")
                 .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**")
                 .excludePathPatterns("/api/v3/test/test");
 

@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_post_comments")
 @ApiModel(value = "HutPostCommentsEntity对象", description = "")
@@ -26,13 +26,13 @@ public class HutPostCommentsEntity {
     private Long id;
 
     @ApiModelProperty("发布评论的用户ID")
-    private Long userId;
+    private String userId;
 
     @ApiModelProperty("被评论的帖子ID")
-    private Long postId;
+    private String postId;
 
     @ApiModelProperty("回复的父级评论ID，顶级评论该字段为NULL")
-    private Long parentCommentId;
+    private String parentCommentId;
 
     @ApiModelProperty("评论内容")
     private String content;
@@ -52,27 +52,27 @@ public class HutPostCommentsEntity {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Long getPostId() {
+    public String getPostId() {
         return postId;
     }
 
-    public void setPostId(Long postId) {
+    public void setPostId(String postId) {
         this.postId = postId;
     }
 
-    public Long getParentCommentId() {
+    public String getParentCommentId() {
         return parentCommentId;
     }
 
-    public void setParentCommentId(Long parentCommentId) {
+    public void setParentCommentId(String parentCommentId) {
         this.parentCommentId = parentCommentId;
     }
 

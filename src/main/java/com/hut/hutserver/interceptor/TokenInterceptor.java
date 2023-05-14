@@ -1,7 +1,7 @@
 package com.hut.hutserver.interceptor;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.hut.hutserver.untils.JWTUtils;
+import com.hut.hutserver.untils.JWTManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +19,25 @@ import java.util.Objects;
 public class TokenInterceptor implements HandlerInterceptor {
 
     @Autowired
-    private JWTUtils jwtUtils;
+    private JWTManager jwtManager;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // get token from header
-        String token = request.getHeader(jwtUtils.getHeader());
+        String token = request.getHeader(jwtManager.getHeader());
         if (StringUtils.isBlank(token)) {
             // get token from param if header is null
-            token = request.getParameter(jwtUtils.getHeader());
+            token = request.getParameter(jwtManager.getHeader());
         }
         // verify token
-        DecodedJWT decodedJWT = jwtUtils.getClaimByToken(token);
+        DecodedJWT decodedJWT = jwtManager.getClaimByToken(token);
         if (decodedJWT == null) {
             log.warn("get null decodeJWT, token: {}", token);
             return false;
         }
         String bid = decodedJWT.getSubject();
         if (!Objects.equals(bid, "")) {
-            request.setAttribute("USER_KEY", bid);
+            request.setAttribute("USER_ID", bid);
             return true;
         }
         return false;

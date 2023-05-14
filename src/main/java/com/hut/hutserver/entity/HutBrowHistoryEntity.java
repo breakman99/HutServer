@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_brow_history")
 @ApiModel(value = "HutBrowHistoryEntity对象", description = "")
@@ -24,9 +24,9 @@ public class HutBrowHistoryEntity {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Long postId;
+    private String postId;
 
-    private Long userId;
+    private String userId;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
@@ -39,19 +39,19 @@ public class HutBrowHistoryEntity {
         this.id = id;
     }
 
-    public Long getPostId() {
+    public String getPostId() {
         return postId;
     }
 
-    public void setPostId(Long postId) {
+    public void setPostId(String postId) {
         this.postId = postId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

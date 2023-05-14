@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_users")
 @ApiModel(value = "HutUsersEntity对象", description = "")
@@ -29,6 +29,8 @@ public class HutUsersEntity {
     private String userId;
 
     private String password;
+
+    private String email;
 
     private String college;
 
@@ -76,6 +78,14 @@ public class HutUsersEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCollege() {
@@ -141,6 +151,7 @@ public class HutUsersEntity {
             ", username = " + username +
             ", userId = " + userId +
             ", password = " + password +
+            ", email = " + email +
             ", college = " + college +
             ", phoneNum = " + phoneNum +
             ", bio = " + bio +

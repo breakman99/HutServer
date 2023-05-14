@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginRequest {
+public class LoginReq {
     private Long userid;
 
     @NotNull
-    @Length(min = 1, max = 10)
+    @Length(min = 2, max = 64)
     private String userName;
 
     @NotNull

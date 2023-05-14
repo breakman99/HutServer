@@ -22,8 +22,8 @@ public class Result<T> implements Serializable {
         return new Result(errorCode, t, msg);
     }
 
-    public static Result err(HutServerErrorCode errorCode) {
-        return new Result(errorCode.getCode(), (Object)null, errorCode.getMessage());
+    public static Result err(HutErrorCode hutErrorCode) {
+        return new Result(hutErrorCode.getCode(), (Object)null, hutErrorCode.getMessage());
     }
 
     public T unwrap() {

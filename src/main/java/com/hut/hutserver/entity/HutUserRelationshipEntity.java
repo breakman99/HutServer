@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_user_relationship")
 @ApiModel(value = "HutUserRelationshipEntity对象", description = "")
@@ -24,9 +24,9 @@ public class HutUserRelationshipEntity {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Long userId;
+    private String userId;
 
-    private Long targetUserId;
+    private String targetUserId;
 
     @ApiModelProperty("关系类型，user_id 对 target_user_id是什么关系，比如关注、拉黑")
     private String relationshipType;
@@ -44,19 +44,19 @@ public class HutUserRelationshipEntity {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Long getTargetUserId() {
+    public String getTargetUserId() {
         return targetUserId;
     }
 
-    public void setTargetUserId(Long targetUserId) {
+    public void setTargetUserId(String targetUserId) {
         this.targetUserId = targetUserId;
     }
 

@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_chat_message")
 @ApiModel(value = "HutChatMessageEntity对象", description = "")
@@ -24,10 +24,10 @@ public class HutChatMessageEntity {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Long senderId;
+    private String sendUserId;
 
-    @ApiModelProperty("群聊则为群的group_id,单聊则为user_id")
-    private Long receiverId;
+    @ApiModelProperty("接收者的user_id")
+    private String receiveUserId;
 
     @ApiModelProperty("只有纯文本类型才会直接展示，其他类型消息都是存储OSS的url")
     private String content;
@@ -62,20 +62,20 @@ public class HutChatMessageEntity {
         this.id = id;
     }
 
-    public Long getSenderId() {
-        return senderId;
+    public String getSendUserId() {
+        return sendUserId;
     }
 
-    public void setSenderId(Long senderId) {
-        this.senderId = senderId;
+    public void setSendUserId(String sendUserId) {
+        this.sendUserId = sendUserId;
     }
 
-    public Long getReceiverId() {
-        return receiverId;
+    public String getReceiveUserId() {
+        return receiveUserId;
     }
 
-    public void setReceiverId(Long receiverId) {
-        this.receiverId = receiverId;
+    public void setReceiveUserId(String receiveUserId) {
+        this.receiveUserId = receiveUserId;
     }
 
     public String getContent() {
@@ -154,8 +154,8 @@ public class HutChatMessageEntity {
     public String toString() {
         return "HutChatMessageEntity{" +
             "id = " + id +
-            ", senderId = " + senderId +
-            ", receiverId = " + receiverId +
+            ", sendUserId = " + sendUserId +
+            ", receiveUserId = " + receiveUserId +
             ", content = " + content +
             ", msgType = " + msgType +
             ", size = " + size +

@@ -11,22 +11,23 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * <p>
- * 
+ * 群组的聊天消息表
  * </p>
  *
  * @author HandleX
- * @since 2023-05-10
+ * @since 2023-05-15
  */
 @TableName("hut_group_message")
-@ApiModel(value = "HutGroupMessageEntity对象", description = "")
+@ApiModel(value = "HutGroupMessageEntity对象", description = "群组的聊天消息表")
 public class HutGroupMessageEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Long senderId;
+    private String sendUserId;
 
-    private Long groupId;
+    @ApiModelProperty("聊天群的group id")
+    private String groupId;
 
     @ApiModelProperty("只有纯文本类型才会直接展示，其他类型消息都是存储OSS的url")
     private String content;
@@ -61,19 +62,19 @@ public class HutGroupMessageEntity {
         this.id = id;
     }
 
-    public Long getSenderId() {
-        return senderId;
+    public String getSendUserId() {
+        return sendUserId;
     }
 
-    public void setSenderId(Long senderId) {
-        this.senderId = senderId;
+    public void setSendUserId(String sendUserId) {
+        this.sendUserId = sendUserId;
     }
 
-    public Long getGroupId() {
+    public String getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(Long groupId) {
+    public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
 
@@ -153,7 +154,7 @@ public class HutGroupMessageEntity {
     public String toString() {
         return "HutGroupMessageEntity{" +
             "id = " + id +
-            ", senderId = " + senderId +
+            ", sendUserId = " + sendUserId +
             ", groupId = " + groupId +
             ", content = " + content +
             ", msgType = " + msgType +
