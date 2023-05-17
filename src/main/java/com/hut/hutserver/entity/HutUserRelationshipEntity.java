@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-15
+ * @since 2023-05-17
  */
 @TableName("hut_user_relationship")
 @ApiModel(value = "HutUserRelationshipEntity对象", description = "")
@@ -28,7 +28,7 @@ public class HutUserRelationshipEntity {
 
     private String targetUserId;
 
-    @ApiModelProperty("关系类型，user_id 对 target_user_id是什么关系，比如关注、拉黑")
+    @ApiModelProperty("common:路人, follow: 关注, sp_follow: 特别关注, block: 拉黑")
     private String relationshipType;
 
     @TableField(fill = FieldFill.INSERT)

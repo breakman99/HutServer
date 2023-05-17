@@ -10,6 +10,8 @@ public class HutErrorCode {
     public static final HutErrorCode REGISTER_FAILED = new HutErrorCode(10002, "学号或密码错误");
     public static final HutErrorCode USER_NOT_EXIST_OR_ERROR_PASSWORD = new HutErrorCode(10003, "账号或密码错误");
     public static final HutErrorCode USER_NOT_EXIST = new HutErrorCode(10004, "用户不存在");
+    public static final HutErrorCode RELATIONSHIP_CHANGE_FAILED = new HutErrorCode(10004, "关系改变失败");
+
 
     public int getCode() {
         return this.code;

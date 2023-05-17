@@ -27,7 +27,7 @@ public class Exetutor {
                 })
                 .strategyConfig(builder -> {
                     // hut_users,hut_user_relationship,hut_posts,hut_post_comments,hut_post_likes,hut_post_collection,hut_brow_history,hut_notifications,hut_chat_message,hut_group_message,hut_chat_group_info,hut_group_member
-                    builder.addInclude("hut_users,hut_user_relationship,hut_posts,hut_post_comments,hut_post_likes,hut_post_collection,hut_brow_history,hut_notifications,hut_chat_message,hut_group_message,hut_chat_group_info,hut_group_member")
+                    builder.addInclude("hut_user_relationship")
                             .entityBuilder()
                             .enableFileOverride()
                             .disableSerialVersionUID()

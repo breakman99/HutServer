@@ -2,7 +2,7 @@ package com.hut.hutserver.handler;
 
 
 import com.hut.hutserver.common.Result;
-import com.hut.hutserver.entity.request.FollowUserReq;
+import com.hut.hutserver.entity.request.UserRelationReq;
 import com.hut.hutserver.entity.request.LoginReq;
 import com.hut.hutserver.entity.request.HutUserDTO;
 import com.hut.hutserver.entity.response.FollowUserResp;
@@ -46,14 +46,8 @@ public class UserHandler extends BaseHandler {
 
     @PostMapping("/follow_user")
     @ApiOperation(value = "关注用户接口")
-    Result<FollowUserResp> followUser(@RequestBody @Validated FollowUserReq followUserReq) {
-        return userService.followUser(followUserReq);
-    }
-
-    @PostMapping("/unfollow_user")
-    @ApiOperation(value = "关注用户接口")
-    Result<FollowUserResp> unfollowUser(@RequestBody @Validated FollowUserReq followUserReq) {
-        return userService.unfollowUser(followUserReq);
+    Result<FollowUserResp> followUser(@RequestBody @Validated UserRelationReq userRelationReq) {
+        return userService.userRelationChange(userRelationReq);
     }
 }
 

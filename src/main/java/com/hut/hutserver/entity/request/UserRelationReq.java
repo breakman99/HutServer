@@ -10,8 +10,10 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FollowUserReq {
+public class UserRelationReq {
     String myUserId;
     @NotNull(message = "用户名不可为空")
     String targetUserId;
+    @NotNull
+    String relationship;
 }

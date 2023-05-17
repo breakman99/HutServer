@@ -1,11 +1,13 @@
 package com.hut.hutserver.service.serviceImpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.hut.hutserver.common.HutErrorCode;
 import com.hut.hutserver.common.Result;
+import com.hut.hutserver.common.UserCommon;
 import com.hut.hutserver.entity.HutUserRelationshipEntity;
 import com.hut.hutserver.entity.HutUsersEntity;
-import com.hut.hutserver.entity.request.FollowUserReq;
+import com.hut.hutserver.entity.request.UserRelationReq;
 import com.hut.hutserver.entity.request.LoginReq;
 import com.hut.hutserver.entity.request.HutUserDTO;
 import com.hut.hutserver.entity.response.FollowUserResp;
@@ -21,7 +23,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 
@@ -79,29 +80,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<FollowUserResp> followUser(FollowUserReq followUserReq) {
-        HutUsersEntity user = hutUsersMapper.selectById(followUserReq.getTargetUserId());
-        if (user == null || StringUtils.isBlank(user.getUserId()) || !StringUtils.equals(user.getUserId(), followUserReq.getTargetUserId())) {
+    public Result<FollowUserResp> userRelationChange(UserRelationReq userRelationReq) {
+        // check the followed user's existence
+        HutUsersEntity user = hutUsersMapper.selectById(userRelationReq.getTargetUserId());
+        if (user == null || StringUtils.isBlank(user.getUserId()) || !StringUtils.equals(user.getUserId(), userRelationReq.getTargetUserId())) {
             Result.ok(HutErrorCode.USER_NOT_EXIST);
         }
         LambdaQueryWrapper<HutUserRelationshipEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(HutUserRelationshipEntity::getUserId, followUserReq.getMyUserId())
-                .eq(HutUserRelationshipEntity::getTargetUserId, followUserReq.getTargetUserId());
+        wrapper.eq(HutUserRelationshipEntity::getUserId, userRelationReq.getMyUserId())
+                .eq(HutUserRelationshipEntity::getTargetUserId, userRelationReq.getTargetUserId());
+        // check if relationship existed
         HutUserRelationshipEntity relationship = relationshipMapper.selectOne(wrapper);
-        if (relationship == null || StringUtils.isBlank(relationship.getUserId()) || !StringUtils.equals(relationship.getUserId(), relationship.getUserId())) {
-            return Result.ok(HutErrorCode.USER_NOT_EXIST_OR_ERROR_PASSWORD);
-        }
         FollowUserResp resp = new FollowUserResp();
-        return Result.ok(resp);
-    }
-
-    @Override
-    public Result<FollowUserResp> unfollowUser(FollowUserReq followUserReq) {
-        HutUsersEntity user = hutUsersMapper.selectById(followUserReq.getTargetUserId());
-        if (user == null || StringUtils.isBlank(user.getUserId()) || !StringUtils.equals(user.getUserId(), followUserReq.getTargetUserId())) {
-            Result.ok(HutErrorCode.USER_NOT_EXIST);
+        if (relationship == null) {
+            // new a relation
+            relationship = new HutUserRelationshipEntity();
+            relationship.setUserId(userRelationReq.getMyUserId());
+            relationship.setTargetUserId(userRelationReq.getTargetUserId());
+            relationship.setRelationshipType(UserCommon.UserRelationship.FOLLOW);
+            if (relationshipMapper.insert(relationship) < 1) {
+                return Result.err(HutErrorCode.RELATIONSHIP_CHANGE_FAILED);
+            }
+        } else {
+            LambdaUpdateWrapper<HutUserRelationshipEntity> updateWrapper = new LambdaUpdateWrapper<>();
+            updateWrapper.eq(HutUserRelationshipEntity::getTargetUserId, userRelationReq.getMyUserId()).eq(HutUserRelationshipEntity::getTargetUserId, userRelationReq.getTargetUserId());
+            if (relationshipMapper.update(relationship, updateWrapper) < 1) {
+                return Result.err(HutErrorCode.RELATIONSHIP_CHANGE_FAILED);
+            }
         }
-        FollowUserResp resp = new FollowUserResp();
         return Result.ok(resp);
     }
 }

@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author HandleX
- * @since 2023-05-15
+ * @since 2023-05-17
  */
 public interface HutUserRelationshipMapper extends BaseMapper<HutUserRelationshipEntity> {
 
